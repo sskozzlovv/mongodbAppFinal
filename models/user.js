@@ -4,7 +4,7 @@ var userSchema = new mongoose.Schema({
     surname: String
 });
 userSchema.statics.getUsersForPage = function (page, itemsPerPage, sort, name, cb) {
-    var itemsPerPage = itemsPerPage || 5;
+    var itemsPerPage = itemsPerPage || 10;
     var page = page || 1;
     var query = this.find().limit(itemsPerPage);
     if (name) {

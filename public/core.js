@@ -1,6 +1,6 @@
 angular.module('usersApp', ['dataGrid', 'pagination']).controller('usersController', ['$scope','$http', function($scope, $http){
     //var herokuDomain = 'https://server-pagination.herokuapp.com';
-    //var herokuDomain = 'https://protected-journey-68520';
+    //var herokuDomain = 'http://protected-journey-68520.herokuapp.com';
     var herokuDomain = '';
     $scope.gridOptions = {
         data: [], //required parameter - array with data
