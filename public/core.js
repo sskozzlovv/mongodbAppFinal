@@ -1,4 +1,7 @@
 angular.module('usersApp', ['dataGrid', 'pagination']).controller('usersController', ['$scope','$http', function($scope, $http){
+    //var herokuDomain = 'https://server-pagination.herokuapp.com';
+    //var herokuDomain = 'https://protected-journey-68520';
+    var herokuDomain = '';
     $scope.gridOptions = {
         data: [], //required parameter - array with data
         getData: getUsersData
@@ -11,26 +14,20 @@ angular.module('usersApp', ['dataGrid', 'pagination']).controller('usersControll
     $scope._gridActions = {};
 
     $scope.save = function(){
-        $http.post('/user', $scope.form).success(function(res){
+        $http.post(herokuDomain + '/user', $scope.form).success(function(res){
             $scope.users = res;
         });
     };
     $scope.delete = function(id){
-        $http.delete('/user/' + id).success(function(res) {
+        $http.delete(herokuDomain + '/user/' + id).success(function(res) {
             $scope.users = res;
         })
     };
-    $scope.getData = function () {
-        $http.get('/users').success(function(res) {
-            $scope.gridOptions.data = res;
-            //$scope.users = res;
-        })
-    };
+
     function getUsersData(params, callback) {
-        $http.get('/users' + params).success(function (response) {
+        $http.get(herokuDomain + '/users' + params).success(function (response) {
             callback(response.users, response.usersCount);
         });
     };
 
-    //$scope.getData();
 }]);
